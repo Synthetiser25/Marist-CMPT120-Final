@@ -1,5 +1,19 @@
-accounts = {
-    12345: {"username": "User 1", "password": "ICouldSomething123", "balance": 2398.34},
-    23456: {"username": "User 2", "password": "ICouldSomething123", "balance": 2398.35},
-    34567: {"username": "User 3", "password": "ICouldSomething123", "balance": 2398.36},
-}
+class Account:
+    def __init__(self, username, password, balance):
+        self.username = username
+        self.password = password
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self, amount):
+        self.balance -= amount
+        return self.balance
+
+
+user1 = Account("user1", "password", 123)
+user2 = Account("user2", "password", 345)
+
+accounts = [user1, user2]
