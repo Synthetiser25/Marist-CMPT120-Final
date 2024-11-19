@@ -1,3 +1,7 @@
+"""
+ATM Project - Main module
+"""
+
 import tkinter as tk
 from tkinter import messagebox
 from accounts import accounts  # The accounts associated with our service
