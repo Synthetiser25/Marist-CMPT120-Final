@@ -1,5 +1,5 @@
 accounts = {
-    68787: {"username": "waaw", "password": "ICouldSomething123", "balance": 2398.34},  # Ask professor if we are allowed to stack dicts
-    "Account 2": 2375.50,
-    "Account 3": 480.00,
+    12345: {"username": "User 1", "password": "ICouldSomething123", "balance": 2398.34},
+    23456: {"username": "User 2", "password": "ICouldSomething123", "balance": 2398.35},
+    34567: {"username": "User 3", "password": "ICouldSomething123", "balance": 2398.36},
 }
