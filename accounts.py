@@ -13,7 +13,13 @@ class Account:
         return self.balance
 
 
-user1 = Account("user1", "password", 123)
-user2 = Account("user2", "password", 345)
+accounts = []
 
-accounts = [user1, user2]
+
+def loadAccounts ():
+    with open('accountStorage.txt', 'r') as f:
+        file = f.readlines()
+
+    for i, line in enumerate(file):
+        elements = line.split(",")
+        accounts.append(Account(elements[0], int(elements[1]), int(elements[2])))

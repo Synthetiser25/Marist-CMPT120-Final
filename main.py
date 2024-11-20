@@ -3,7 +3,7 @@ ATM Project - Main module
 """
 
 import tkinter as tk
-from accounts import accounts  # The accounts associated with our service
+from accounts import *  # The accounts associated with our service
 from functions import *
 
 # Create the main window
@@ -23,6 +23,8 @@ label.pack(expand=True)
 # Dropdown menu to select account
 selected_account = tk.StringVar(window)
 selected_account.set("Pick an Account!")  # Default value
+
+loadAccounts()  # Load Accounts
 
 usernames = [account.username for account in accounts]
 account_menu = tk.OptionMenu(card_frame, selected_account, *usernames)
