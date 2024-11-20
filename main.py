@@ -31,7 +31,7 @@ account_menu = tk.OptionMenu(card_frame, selected_account, *usernames)
 account_menu.pack()
 
 # Button to view balance
-view_button = tk.Button(card_frame, text="View Balance", command=lambda: show_balance(get_account_by_username(selected_account.get())))
+view_button = tk.Button(card_frame, text="View Account", command=lambda: load_user(get_account_by_username(selected_account.get())))
 view_button.pack(pady=10)
 
 # Run the application
