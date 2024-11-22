@@ -1,3 +1,4 @@
+import types
 from tkinter import messagebox, simpledialog
 from accounts import accounts
 
@@ -24,8 +25,13 @@ def login(acc):
     input_password = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
     # Password checker
     while count < 2:
+        # Check if cancel
+        if type(input_password) == types.NoneType:
+            return False
+        # Check password
         if input_password == acc.password:
             return True
+        # Set up next iter.
         else:
             count += 1
             messagebox.showwarning("Incorrect","Incorrect password! You have " +str(3-count)+" attempts remaining")
