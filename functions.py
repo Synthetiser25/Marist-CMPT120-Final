@@ -20,10 +20,18 @@ def withdraw(acc):
 
 
 def login(acc):
-    input_password = age = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
-    # Jonas check password and if correct return true (give user 3 tries before deny)
-    if input_password:
-        return True
+    count = 0
+    input_password = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
+    # Password checker
+    while count < 2:
+        if input_password == acc.password:
+            return True
+        else:
+            count += 1
+            messagebox.showwarning("Incorrect","Incorrect password! You have " +str(3-count)+" attempts remaining")
+        input_password = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
+    messagebox.showwarning("Incorrect", "Too many incorrect attempts! Please try again later.")
+    return False
 
 
 def show_balance(acc):
