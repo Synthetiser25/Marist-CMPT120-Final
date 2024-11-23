@@ -1,6 +1,18 @@
 import types
 from tkinter import messagebox, simpledialog
-from accounts import accounts
+from accounts import accounts, writeAccounts, Account
+
+
+def create_account(username, password, start_bal):
+    accounts.append(Account(str(username), round(float(password), 2), round(float(start_bal), 2)))
+    writeAccounts()
+
+
+def close_account(username, password):
+    for user in accounts:
+        if user.username == username and user.password == password:
+            accounts.remove(user)
+    writeAccounts()
 
 
 def load_user(acc):
