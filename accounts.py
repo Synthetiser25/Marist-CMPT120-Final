@@ -30,4 +30,4 @@ def loadAccounts():
 def writeAccounts():
     with open('accountStorage.txt', 'w') as f:
         for account in accounts:
-            f.write(str(account.username) + "," + str(account.password) + "," + str(account.balance) + "\n")
+            f.write(str(account.username) + "," + str(account.password) + "," + str(round(account.balance, 2)) + "\n")
