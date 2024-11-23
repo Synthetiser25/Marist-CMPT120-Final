@@ -3,16 +3,19 @@ from tkinter import messagebox, simpledialog
 from accounts import accounts, writeAccounts, Account
 
 
-def create_account(username, password, start_bal):
+def create_account(username, password, start_bal):  # Jonas use this to create account with the inputs (Make sure to double check with user the info before sending to function)
     accounts.append(Account(str(username), round(float(password), 2), round(float(start_bal), 2)))
     writeAccounts()
 
 
-def close_account(username, password):
+def close_account(username, password):  # Jonas use this to close account, will return True if it closed or False if the information was wrong
     for user in accounts:
         if user.username == username and user.password == password:
             accounts.remove(user)
+        else:
+            return False
     writeAccounts()
+    return True
 
 
 def load_user(acc):
