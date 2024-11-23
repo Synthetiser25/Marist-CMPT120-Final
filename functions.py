@@ -11,12 +11,12 @@ def load_user(acc):
 
 
 def deposit(acc):
-    amount = float(simpledialog.askstring("Amount", "Enter amount to deposit"))
+    amount = round(float(simpledialog.askstring("Amount", "Enter amount to deposit")), 2)
     acc.deposit(amount)
 
 
 def withdraw(acc):
-    amount = float(simpledialog.askstring("Amount", "Enter amount to withdraw"))
+    amount = round(float(simpledialog.askstring("Amount", "Enter amount to withdraw")), 2)
     acc.withdraw(amount)
 
 
@@ -24,7 +24,7 @@ def login(acc):
     count = 0
     input_password = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
     # Password checker
-    while count < 2:
+    while count <= 2:
         # Check if cancel
         if type(input_password) == types.NoneType:
             return False
@@ -34,8 +34,10 @@ def login(acc):
         # Set up next iter.
         else:
             count += 1
-            messagebox.showwarning("Incorrect","Incorrect password! You have " +str(3-count)+" attempts remaining")
-        input_password = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
+            if count <= 2:
+                messagebox.showwarning("Incorrect","Incorrect password! You have " +str(3-count)+" attempts remaining")
+        if count <= 2:
+            input_password = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
     messagebox.showwarning("Incorrect", "Too many incorrect attempts! Please try again later.")
     return False
 
