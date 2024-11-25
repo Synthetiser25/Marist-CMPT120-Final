@@ -44,6 +44,11 @@ def create_new_window(acc):
                                                    balance_label.config(text=f"Balance: ${acc.balance:.2f}")])
     withdrawal_button.grid(row=0, column=1, padx=10)
 
+    # Close Account
+    close_button = tk.Button(button_frame, text="Close Account", bg="#007BFF", fg="black", font=("Arial", 14), width=15,
+                             command=lambda: close_account(acc.username))
+    close_button.grid(row=0, column = 2, padx=10)
+
     # Run the Tkinter main loop
     account_window.mainloop()
 
@@ -84,6 +89,11 @@ def main():
     view_button = tk.Button(card_frame, text="View Account", bg="#007BFF", fg="black", font=("Arial", 14), width=15,
                             command=lambda: load_user(get_account_by_username(selected_account.get())))
     view_button.pack(pady=15)
+
+    # Button to Create Account
+    account_button = tk.Button(card_frame, text = "Create Account", bg="#007BFF", fg="black", font=("Arial", 14),
+                               width=15, command=lambda: (create_account()))
+    account_button.pack(pady=15)
 
     # Footer for additional information
     footer_label = tk.Label(window, text="Manage your accounts securely and easily", bg="white", fg="gray",

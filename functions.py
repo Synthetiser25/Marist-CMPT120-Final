@@ -1,19 +1,31 @@
 import types
 from tkinter import messagebox, simpledialog
-from accounts import accounts, writeAccounts, Account
+from turtledemo.forest import start
+
+from accounts import accounts, writeAccounts, Account, loadAccounts
 
 
-def create_account(username, password, start_bal):  # Jonas use this to create account with the inputs (Make sure to double check with user the info before sending to function)
+def create_account():  # Needs Account List UI to be updated
+    username = simpledialog.askstring("New User", "Enter your username: ")
+    password = simpledialog.askstring("New User", "Enter your PIN: ")
+    start_bal = simpledialog.askfloat("New User", "Enter your starting balance: ")
+    if type(username) == types.NoneType or type(password) == types.NoneType or type(start_bal) == types.NoneType:
+        messagebox.showwarning("Failed", "Account creation failed! Please try again later.")
+        return False
     accounts.append(Account(str(username), int(password), round(float(start_bal), 2)))
     writeAccounts()
+    return True
 
 
-def close_account(username, password):  # Jonas use this to close account, will return True if it closed or False if the information was wrong
+def close_account(username):  # Needs account list to be updated + account UI to close
+    password = simpledialog.askinteger("Close Account", "Enter your PIN to close account: ")
+    prevLength = len(accounts)
     for user in accounts:
-        if user.username == username and user.password == password:
+        if user.username == username and user.password == password and type(password) != types.NoneType:
+            print("Account Deleted")
             accounts.remove(user)
-        else:
-            return False
+    if len(accounts) == prevLength:
+        return False
     writeAccounts()
     return True
 
