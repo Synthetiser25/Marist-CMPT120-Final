@@ -1,13 +1,14 @@
 import types
 from tkinter import messagebox, simpledialog
-from turtledemo.forest import start
 
-from accounts import accounts, writeAccounts, Account, loadAccounts
+from accounts import accounts, writeAccounts, Account
 
 
-def create_account():  # Needs Account List UI to be updated
+def create_account():
     username = simpledialog.askstring("New User", "Enter your username: ")
     password = simpledialog.askstring("New User", "Enter your PIN: ")
+    if len(password) != 4:
+        password = simpledialog.askstring("New User", "Enter a 4 DIGIT PIN: ")
     start_bal = simpledialog.askfloat("New User", "Enter your starting balance: ")
     if type(username) == types.NoneType or type(password) == types.NoneType or type(start_bal) == types.NoneType:
         messagebox.showwarning("Failed", "Account creation failed! Please try again later.")
@@ -17,12 +18,12 @@ def create_account():  # Needs Account List UI to be updated
     return True
 
 
-def close_account(username):  # Needs account list to be updated + account UI to close
+def close_account(username):
     password = simpledialog.askinteger("Close Account", "Enter your PIN to close account: ")
     prevLength = len(accounts)
     for user in accounts:
         if user.username == username and user.password == password and type(password) != types.NoneType:
-            print("Account Deleted")
+            messagebox.showwarning(f"{username}'s Account","Account Deleted")
             accounts.remove(user)
     if len(accounts) == prevLength:
         return False
@@ -30,11 +31,11 @@ def close_account(username):  # Needs account list to be updated + account UI to
     return True
 
 
-def load_user(acc):
+def load_user(acc, selected_account, account_menu, card_frame):
     login_attempt = login(acc)  # Will receive true or false by user
     if login_attempt:
         import main
-        main.create_new_window(acc)
+        main.create_new_window(acc, selected_account, account_menu, card_frame)
 
 
 def deposit(acc):

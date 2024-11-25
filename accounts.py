@@ -19,6 +19,7 @@ accounts = []
 
 
 def loadAccounts():
+    accounts.clear()
     with open('accountStorage.txt', 'r') as f:
         file = f.readlines()
 
