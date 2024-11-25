@@ -7,10 +7,10 @@ from accounts import accounts, writeAccounts, Account
 def create_account():
     username = simpledialog.askstring("New User", "Enter your username: ")
     password = simpledialog.askstring("New User", "Enter your PIN: ")
-    if len(password) != 4:
+    if len(password) != 4 and type(password) != types.NoneType:
         password = simpledialog.askstring("New User", "Enter a 4 DIGIT PIN: ")
     start_bal = simpledialog.askfloat("New User", "Enter your starting balance: ")
-    if type(username) == types.NoneType or type(password) == types.NoneType or type(start_bal) == types.NoneType:
+    if type(username) == types.NoneType or len(username) < 1 or type(password) == types.NoneType or type(start_bal) == types.NoneType:
         messagebox.showwarning("Failed", "Account creation failed! Please try again later.")
         return False
     accounts.append(Account(str(username), int(password), round(float(start_bal), 2)))
@@ -39,13 +39,23 @@ def load_user(acc, selected_account, account_menu, card_frame):
 
 
 def deposit(acc):
-    amount = round(float(simpledialog.askstring("Amount", "Enter amount to deposit")), 2)
-    acc.deposit(amount)
+    amount = simpledialog.askstring("Amount", "Enter amount to deposit")
+    if type(amount) == types.NoneType:
+        return False
+    elif len(amount) <1:
+        messagebox.showwarning("Failed", "Input a proper value to deposit!")
+    else:
+        acc.deposit(round(float(amount), 2))
 
 
 def withdraw(acc):
-    amount = round(float(simpledialog.askstring("Amount", "Enter amount to withdraw")), 2)
-    acc.withdraw(amount)
+    amount = simpledialog.askstring("Amount", "Enter amount to withdraw")
+    if type(amount) == types.NoneType:
+        return False
+    elif len(amount) <1:
+        messagebox.showwarning("Failed", "Input a proper value to withdraw!")
+    else:
+        acc.withdraw(round(float(amount), 2))
 
 
 def login(acc):

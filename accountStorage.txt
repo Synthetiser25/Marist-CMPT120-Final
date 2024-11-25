@@ -1,5 +1,4 @@
 John Doe,4444,134.00
 Jane Doe,5555,355.63
 Michael Kurilko,1234,345.00
-User 4,4444,333.00
-User8,1111,123.00
+Jonas Kovamees,1515,260.12
