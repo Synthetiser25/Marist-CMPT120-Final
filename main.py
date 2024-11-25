@@ -25,7 +25,7 @@ def create_new_window(acc):
     card_frame.pack(pady=20)
 
     # Display account balance within the card frame
-    balance_label = tk.Label(card_frame, text=f"Balance: ${acc.balance}", bg="lightblue", fg="black",
+    balance_label = tk.Label(card_frame, text=f"Balance: ${acc.balance:.2f}", bg="lightblue", fg="black",
                              font=("Arial", 18))
     balance_label.pack(pady=10)
 
@@ -35,13 +35,13 @@ def create_new_window(acc):
 
     # Deposit Button
     deposit_button = tk.Button(button_frame, text="Deposit", bg="#4CAF50", fg="black", font=("Arial", 14), width=15,
-                               command=lambda: [deposit(acc), balance_label.config(text=f"Balance: ${acc.balance}")])
+                               command=lambda: [deposit(acc), balance_label.config(text=f"Balance: ${acc.balance:.2f}")])
     deposit_button.grid(row=0, column=0, padx=10)
 
     # Withdraw Button
     withdrawal_button = tk.Button(button_frame, text="Withdraw", bg="#F44336", fg="black", font=("Arial", 14), width=15,
                                   command=lambda: [withdraw(acc),
-                                                   balance_label.config(text=f"Balance: ${acc.balance}")])
+                                                   balance_label.config(text=f"Balance: ${acc.balance:.2f}")])
     withdrawal_button.grid(row=0, column=1, padx=10)
 
     # Run the Tkinter main loop

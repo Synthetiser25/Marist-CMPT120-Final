@@ -4,7 +4,7 @@ from accounts import accounts, writeAccounts, Account
 
 
 def create_account(username, password, start_bal):  # Jonas use this to create account with the inputs (Make sure to double check with user the info before sending to function)
-    accounts.append(Account(str(username), round(float(password), 2), round(float(start_bal), 2)))
+    accounts.append(Account(str(username), int(password), round(float(start_bal), 2)))
     writeAccounts()
 
 
@@ -55,12 +55,6 @@ def login(acc):
             input_password = simpledialog.askinteger("Password", "What is your password?", minvalue=1000, maxvalue=9999)
     messagebox.showwarning("Incorrect", "Too many incorrect attempts! Please try again later.")
     return False
-
-
-def show_balance(acc):
-    balance = acc.balance
-    username = acc.username
-    messagebox.showinfo("Account Balance", f"Balance for {username}: ${balance:.2f}")
 
 
 def get_account_by_username(username):
